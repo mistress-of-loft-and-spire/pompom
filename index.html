@@ -60,7 +60,7 @@
 					<p style="color: #94a1b2">All pompom data is saved as 'localStorage' in your browser and never saved online. You can import and export this data as a <a href="https://tailordev.github.io/Watson/" target="_blank">Watson</a> compatible 'frames' file.</p>
 					<p><button id="clearData" onclick="exportData()">💾 Export data</button></p>
 					<p style="color: #94a1b2">⚠ The following buttons will clear/overwrite all currently stored data.</p>
-					<tr><td><button id="clearData" onclick="importData()">⬆️ Import data</button></td><td><button id="clearData" onclick="clearData()">🧹 Clear all data</button></td></tr>
+					<p><button class="danger" id="clearData" onclick="importData()">📁 Import data</button> <button class="danger"  id="clearData" onclick="clearData()">🧹 Clear all data</button></p>
 				</table>
 				<button id="closeAboutBtn" onclick="hideView('aboutView')">✔ Save & Close</button>
 			</div>

@@ -62,6 +62,15 @@ button, input[type=submit] {
 	transition: all 0.25s;
 }
 
+button.danger {
+	color: #16161a;
+	background-color: #f75c5c;
+}
+
+button.danger:hover {
+	color: #fffffe;
+}
+
 button:hover:not(:active):enabled,
 input[type=submit]:hover:enabled:not(:active) {
 	background-color: #353141;
