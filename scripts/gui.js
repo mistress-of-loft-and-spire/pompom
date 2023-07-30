@@ -76,15 +76,14 @@ function renderDatePicker() {
 
 function renderCalendar(project = "") {
 
-	var graphText = "";
+	var graphText = "{ "
 
 	for (var i in frames) {
 		if (project != "" && project != frames[i][2])
 			continue;
 
 		// Graph Data
-		if (graphText == "") graphText += "{ "
-		else graphText += ", "
+		if (graphText != "{ ") graphText += ", "
 		graphText += '"' + frames[i][0] + '": ';
 
 		timeDifference = frames[i][1] - frames[i][0]

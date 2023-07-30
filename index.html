@@ -37,7 +37,7 @@
 			<div>
 
 				<h1>🍆 𝓅𝑜𝓂𝓅𝑜𝓂</h1>
-				<p>version 0.1</p>
+				<p>version 0.2</p>
 				<p id="authorText">designed by <a href='https://github.com/mistress-of-loft-and-spire' target='_blank'>mistress-of-loft-and-spire</a></p>
 				<p>Licensed under the Cooperative Nonviolent Public License, <a href='https://git.pixie.town/thufie/npl-builder' target='_blank'>CNPLv7+</a></p>
 			</div>
@@ -57,9 +57,10 @@
 				</table>
 				<p>Data</p>
 				<table>
-					<tr><td></td><td><button id="clearData" onclick="clearData()">🧹 Clear all data</button></td></tr>
-					<tr><td>Sound effect</td><td></td></tr>
-					<tr><td></td><td></td></tr>
+					<p>All pompom data is saved as 'localStorage' in your browser and never saved online. You can import and export this data as a <a href="https://tailordev.github.io/Watson/" target="_blank">Watson</a> compatible 'frames' file.</p>
+					<tr><td></td><td><button id="clearData" onclick="exportData()">💾 Export data</button></td></tr>
+					<tr><td>⚠ Will override all data</td><td><button id="clearData" onclick="importData()">⬆️ Import data</button></td></tr>
+					<tr><td>⚠ Cannot be undone</td><td><button id="clearData" onclick="clearData()">🧹 Clear all data</button></td></tr>
 				</table>
 				<button id="closeAboutBtn" onclick="hideView('aboutView')">✔ Save & Close</button>
 			</div>
@@ -95,22 +96,26 @@
 			</div>
 		</div>
 
-		<div id="dateContainer" class="flexRow">
-			<input type="date" id="startdate" disabled title="Not yet implemented" /><span> → </span><input type="date" id="enddate" disabled title="Not yet implemented" />
-		</div>
+		<div class="midMain">
 
-		<div id="calendarContainer">
-			<div id="heatmap"></div>
-			<div class="calendarOverlay leftBorder" id="calOverlay"></div>
+			<div id="dateContainer" class="flexRow">
+				<input type="date" id="startdate" disabled title="Not yet implemented" /><span> → </span><input type="date" id="enddate" disabled title="Not yet implemented" />
+			</div>
 
-			<div class="flexRow">
-				<div class="rightAlign">
-					<button id="calLeftBtn" onclick="calprev()" >←</button>
-				</div>
-				<div class="rightAlign">
-					<button id="calRightBtn" onclick="calnext()" >→</button>
+			<div id="calendarContainer">
+				<div id="heatmap"></div>
+				<div class="calendarOverlay leftBorder" id="calOverlay"></div>
+
+				<div class="flexRow">
+					<div class="rightAlign">
+						<button id="calLeftBtn" onclick="calprev()" >←</button>
+					</div>
+					<div class="rightAlign">
+						<button id="calRightBtn" onclick="calnext()" >→</button>
+					</div>
 				</div>
 			</div>
+
 		</div>
 
 		<div class="lowerMain">

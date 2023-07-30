@@ -38,6 +38,8 @@ a {
 	transition: 0.25s;
 }
 
+
+
 a:hover {
 	color: #30ffa9;
 }
@@ -250,6 +252,23 @@ main {
 	padding: 0 0;
 }
 
+.midMain {
+	flex-grow: 1;
+	overflow-y: auto;
+	padding: 1em 10%;
+}
+
+@media (max-width: 800px) {
+	.midMain {
+		padding: 1em;
+	}
+}
+
+.lowerMain {
+	max-width: 47em;
+	margin: 0 auto;
+}
+
 .view {
 	width: 100%;
 	height: 100vh;
@@ -299,6 +318,14 @@ main {
 #aboutView .dialogBox div:nth-child(1) {
 	background-color: #7d5cf7;
 	background: linear-gradient(130deg, #7d5cf7, #c06be8);
+}
+
+.dialogBox a:not(:hover):not(:active) {
+	color: #fff;
+}
+
+#aboutView .dialogBox div:nth-child(1) a:not(:hover):not(:active) {
+	color: #16161a;
 }
 
 .dialogBox p, .dialogBox ul, .dialogbox h1 {

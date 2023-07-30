@@ -11,15 +11,16 @@ var calendar = new CalHeatMap();
 
 function loadFrames() {
 	data = localStorage.getItem('frameData');
-	console.log(data);
-	if (!data) {
-		data = backupdata;
-	}
 	parseData(data);
 	renderMain();
 };
 
 function parseData(data) {
+	if (data == null || data == "" || data == "[]") {
+		frames = [];
+		project = [];
+		return
+	}
 	frames = JSON.parse(data);
 
 	for (var i in frames) {
@@ -28,11 +29,53 @@ function parseData(data) {
 		for (var project in projects) { if (projects[project] == frames[i][2]) isAdded = true; }
 		if (!isAdded) projects.push(frames[i][2]);
 	}
-
 }
 
 function clearData() {
-	localStorage.clear();
+	if (confirm("Clear all data?") == true) {
+		localStorage.clear();
+		loadFrames();
+		location.reload();
+	}
+}
+
+function exportData() {
+	var file = new Blob([data], { type: type });
+	var a = document.createElement("a"),
+		url = URL.createObjectURL(file);
+	a.href = url;
+	a.download = filename;
+}
+
+function importData() {
+	var input = document.createElement('input');
+	input.type = 'file';
+	input.onchange = _ => {
+		// you can use this method to get file and perform respective operations
+		var files = Array.from(input.files);
+		if (files.length < 1) return;
+		if (confirm("Import this file and replace all previous data?") == true) {
+			var reader = new FileReader();
+			reader.onload = onFileLoaded;
+			reader.readAsText(files[0])
+		}
+	};
+	input.click();
+}
+function onFileLoaded(e) {
+	try {
+		frames = JSON.parse(e.target.result);
+	} catch (err) {
+		window.alert("Could not load data!\n\n" + err);
+		return;
+	}
+	storeData();
+	location.reload();
+}
+
+function storeData() {
+	var data = JSON.stringify(frames);
+	localStorage.setItem('frameData', data);
 }
 
 function addFrame(timer) {
@@ -44,8 +87,7 @@ function addFrame(timer) {
 
 	frames.push([start, end, timer.activeProject, id, [], end]);
 
-	var data = JSON.stringify(frames);
-	localStorage.setItem('frameData', data);
+	storeData();
 	renderMain();
 }
 
