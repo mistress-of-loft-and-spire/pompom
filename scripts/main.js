@@ -40,11 +40,18 @@ function clearData() {
 }
 
 function exportData() {
-	var file = new Blob([data], { type: type });
+	var data = JSON.stringify(frames, null,1);
+	var file = new Blob([data], { type: 'text/plain' });
 	var a = document.createElement("a"),
 		url = URL.createObjectURL(file);
 	a.href = url;
-	a.download = filename;
+	a.download = "frames";
+	document.body.appendChild(a);
+	a.click();
+	setTimeout(function () {
+		document.body.removeChild(a);
+		window.URL.revokeObjectURL(url);
+	}, 0);
 }
 
 function importData() {
