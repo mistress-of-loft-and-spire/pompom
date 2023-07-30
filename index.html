@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script src="./scripts/includes/cal-heatmap/d3.min.js"></script>
+	<script src="./scripts/includes/cal-heatmap/cal-heatmap.js"></script>
+	<link rel="stylesheet" href="./scripts/includes/cal-heatmap/cal-heatmap.css">
+	
+	<script src="./scripts/main.js"></script>
+	<script src="./scripts/gui.js"></script>
+	<script src="./scripts/timer.js"></script>
+	
+	<link rel="stylesheet" href="./assets/hot.css">
+	<link rel="stylesheet" href="./assets/colors.css">
+	<link rel="stylesheet" href="./assets/fonts/inter/inter.css">
+
+</head>
+
+<body>
+	<nav>
+		<div class="leftAlign">
+			<div id="titletext">🍆</div>
+			<button id="backBtn" class="hidden">← Back</button>
+			<input type="file" style="display:none;" id="file" name="file"/>
+		</div>
+		<div class="centerAlign"></div>
+		<div class="leftAlign">
+			<button id="aboutBtn" class="altbutton" onclick="showView('aboutView')">🔧</button>
+		</div>
+	</nav>
+	
+	<aside id="aboutView" class="view hiddenView">
+		<div class="dialogBox">
+			<div>
+
+				<h1>🍆 𝓅𝑜𝓂𝓅𝑜𝓂</h1>
+				<p>version 0.1</p>
+				<p id="authorText">designed by <a href='https://github.com/mistress-of-loft-and-spire' target='_blank'>mistress-of-loft-and-spire</a></p>
+				<p>Licensed under the Cooperative Nonviolent Public License, <a href='https://git.pixie.town/thufie/npl-builder' target='_blank'>CNPLv7+</a></p>
+			</div>
+			<div>
+				<p>Timer</p>
+				<table>
+					<tr><td>Pomodoro duration</td><td><input type="number" min="1" max="9999" value="50"></input></td></tr>
+					<tr><td>Break duration</td><td><input type="number" min="1" max="9999" value="10"></input></td></tr>
+					<tr><td>Auto start break</td><td><input type="checkbox"></input></td></tr>
+					<tr><td>Auto start pomodoro</td><td><input type="checkbox"></input></td></tr>
+				</table>
+				<p>Notifications</p>
+				<table>
+					<tr><td>Desktop notifications</td><td></td></tr>
+					<tr><td>Sound effect</td><td></td></tr>
+					<tr><td></td><td></td></tr>
+				</table>
+				<p>Data</p>
+				<table>
+					<tr><td></td><td><button id="clearData" onclick="clearData()">🧹 Clear all data</button></td></tr>
+					<tr><td>Sound effect</td><td></td></tr>
+					<tr><td></td><td></td></tr>
+				</table>
+				<button id="closeAboutBtn" onclick="hideView('aboutView')">✔ Save & Close</button>
+			</div>
+		</div>
+	</aside>
+
+	<aside id="addProjectView" class="view hiddenView">
+		<div class="dialogBox">
+			<div>
+				<form onsubmit="return addProject()">
+				<div><span>Add project</span></div>
+				<input type="text" id="projectname" placeholder="Name" required value=""></input>
+				<input type="submit" value="Add"></input>
+				<button class="altbutton" onclick="hideView('addProjectView')">Cancel</button>
+				</form>
+			</div>
+		</div>
+	</aside>
+
+	<main id="mainView">
+		<div id="clockContainer" class="flexColumn">
+			<div id="clock">50:00</div>
+			<div id="startstop" class="flexRow hidden">
+				<button id="returnBtn" class="altbutton hidden"  onclick="returnToProjects()">← Change Project</button>
+				<button id="pauseBtn" class="altbutton hidden"  onclick="pauseTimer()">⏸</button>
+				<button id="startBtn" class="altbutton" onclick="startTimer()">▶ Resume</button>
+				<button id="stopBtn" class="altbutton hidden" onclick="stopTimer()">⏹ Stop</button>
+				<button id="cancelBtn" class="altbutton hidden" onclick="cancelTimer()">✖ Cancel</button>
+
+			</div>
+			<div id="projects" class='flexProjects'>
+				<button id='addProject' class="altbutton" onclick="showAddProject()">+</button>
+			</div>
+		</div>
+
+		<div id="dateContainer" class="flexRow">
+			<input type="date" id="startdate" disabled title="Not yet implemented" /><span> → </span><input type="date" id="enddate" disabled title="Not yet implemented" />
+		</div>
+
+		<div id="calendarContainer">
+			<div id="heatmap"></div>
+			<div class="calendarOverlay leftBorder" id="calOverlay"></div>
+
+			<div class="flexRow">
+				<div class="rightAlign">
+					<button id="calLeftBtn" onclick="calprev()" >←</button>
+				</div>
+				<div class="rightAlign">
+					<button id="calRightBtn" onclick="calnext()" >→</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="lowerMain">
+
+			<div id="timeContainer">
+			</div>
+
+			<div id="projectContainer">
+			</div>
+
+			<div id="frameList" class="hidden">
+
+			</div>
+
+		</div>
+	</main>
+</body>
+
+</html>
