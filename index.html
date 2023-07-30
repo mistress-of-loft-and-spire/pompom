@@ -57,10 +57,10 @@
 				</table>
 				<p>Data</p>
 				<table>
-					<p>All pompom data is saved as 'localStorage' in your browser and never saved online. You can import and export this data as a <a href="https://tailordev.github.io/Watson/" target="_blank">Watson</a> compatible 'frames' file.</p>
-					<tr><td></td><td><button id="clearData" onclick="exportData()">💾 Export data</button></td></tr>
-					<tr><td>⚠ Will override all data</td><td><button id="clearData" onclick="importData()">⬆️ Import data</button></td></tr>
-					<tr><td>⚠ Cannot be undone</td><td><button id="clearData" onclick="clearData()">🧹 Clear all data</button></td></tr>
+					<p style="color: #94a1b2">All pompom data is saved as 'localStorage' in your browser and never saved online. You can import and export this data as a <a href="https://tailordev.github.io/Watson/" target="_blank">Watson</a> compatible 'frames' file.</p>
+					<p><button id="clearData" onclick="exportData()">💾 Export data</button></p>
+					<p style="color: #94a1b2">⚠ The following buttons will clear/overwrite all currently stored data.</p>
+					<tr><td><button id="clearData" onclick="importData()">⬆️ Import data</button></td><td><button id="clearData" onclick="clearData()">🧹 Clear all data</button></td></tr>
 				</table>
 				<button id="closeAboutBtn" onclick="hideView('aboutView')">✔ Save & Close</button>
 			</div>
