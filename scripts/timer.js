@@ -16,7 +16,6 @@ function startTimer(project) {
 	hide("returnBtn");
 	show("cancelBtn");
 
-
 	timer.running = true;
 	if (project != null && project != "") {
 		timer.activeProject = project;
@@ -73,10 +72,17 @@ function calcTimer() {
 function parseTimer() {
 	var diff = timer.time / 1000;
 
-	var minutes = (diff / 60) | 0;
+	var hours = (diff / 3600) | 0;
+	var minutes = ((diff / 60) % 60) | 0;
 	var seconds = (diff % 60) | 0;
+	if (hours < 1) hours = "";
+	else hours = hours + ":";
 	minutes = minutes < 10 ? "0" + minutes : minutes;
 	seconds = seconds < 10 ? "0" + seconds : seconds;
 
-	document.getElementById("clock").textContent = minutes + ':' + seconds;
+	document.getElementById("clock").textContent = hours + minutes + ':' + seconds;
+	var titeltext = "🍆" + " " + hours + minutes + ':' + seconds + " " + timer.activeProject;
+	if (document.title != titeltext) {
+		document.title = titeltext;
+	}
 }
