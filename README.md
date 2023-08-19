@@ -4,9 +4,9 @@ wip
 
 # TODO
 
-* [ ] page title to show time and project
-* [ ] bug: null project when resuming?
-* [ ] stop/cancel naming? / change project top left??
+* [x] page title to show time and project
+* [x] bug: null project when resuming?
+* [ ] label of stop/cancel button? / change project top left??
 * [ ] project list color
 * [ ] project list duplication / linking top and bottom
 * [ ] frames list styling
