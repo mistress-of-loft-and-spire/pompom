@@ -18,7 +18,9 @@ function startTimer(project) {
 
 
 	timer.running = true;
-	timer.activeProject = project;
+	if (project != null && project != "") {
+		timer.activeProject = project;
+	}
 	
 	timer.starttime = Date.now();
 	timer.lasttick = timer.starttime;
